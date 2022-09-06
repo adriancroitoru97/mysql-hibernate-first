@@ -3,22 +3,39 @@ package com.sqlproject.demo.service;
 import com.sqlproject.demo.model.User;
 import com.sqlproject.demo.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.Future;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
 
-    public List<User> findAllUsers() {
-        return userRepository.findAll();
+    @Async
+    public Future<List<User>> findAllUsers() {
+        try {
+            Thread.sleep(5000);
+            return new AsyncResult<>(userRepository.findAll());
+        } catch (InterruptedException ignored) {
+        }
+
+        return null;
     }
 
-    public User createUser(User user) {
-        return userRepository.save(user);
+//    @Async
+    public Future<User> createUser(User user) {
+        try {
+            Thread.sleep(5000);
+            return new AsyncResult<>(userRepository.save(user));
+        } catch (InterruptedException ignored) {
+        }
+
+        return null;
     }
 
     public User findByID(UUID id) {
