@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -20,7 +21,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User findByID(Integer id) {
+    public User findByID(UUID id) {
         return userRepository.findById(id).orElse(null);
     }
 
@@ -32,7 +33,7 @@ public class UserService {
         return userRepository.findByEmailAndAge(email, age).orElse(null);
     }
 
-    public boolean deleteByID(Integer id) {
+    public boolean deleteByID(UUID id) {
         if (userRepository.existsById(id)) {
             userRepository.deleteById(id);
             return true;
