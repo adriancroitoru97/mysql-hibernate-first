@@ -8,14 +8,15 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.util.UUID;
 
+/**
+ * A DTO for the {@link com.sqlproject.demo.model.Address} entity
+ */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDTO implements Serializable {
+public class AddressDTO implements Serializable {
     private UUID id;
-    private String name;
-    private String email;
-    private Integer age;
-    private AddressDTO address;
+    private String city;
+    private String country;
 }

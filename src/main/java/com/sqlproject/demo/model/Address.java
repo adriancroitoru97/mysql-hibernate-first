@@ -6,25 +6,21 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.UUID;
 
-@Table(name = "USER")
+@Table(name = "ADDRESS")
 @Entity
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString @Getter @Setter
-public class User {
+@ToString
+@Getter
+@Setter
+public class Address {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)")
     private UUID id;
 
-    @Column(length = 32)
-    private String name;
-
-    private String email;
-    private Integer age;
-
-    @ManyToOne(cascade = {CascadeType.ALL})
-    private Address address;
+    private String city;
+    private String country;
 }
